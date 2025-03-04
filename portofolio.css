@@ -1,0 +1,167 @@
+/* --- Reset dan Pengaturan Dasar --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+/* --- Navbar --- */
+header {
+    background-color: #181818;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    color: #1f0c64;
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90vh;
+    padding: 0 10%;
+    flex-wrap: wrap;
+}
+.hero-text {
+    max-width: 500px;
+}
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: white;
+}
+.hero-text h1 span {
+    color: #11088d;
+}
+.hero-text h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #b3b3b3;
+}
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #d9d9d9;
+}
+
+/* --- Button Styling --- */
+.btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #07169c, #052b68);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 5px 10px rgba(255, 204, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 30px;
+    text-decoration: none;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(255, 136, 0, 0.5);
+}
+
+/* --- Hero Image --- */
+.hero-image img {
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 50px 10%;
+    }
+    .hero-image img {
+        width: 280px;
+        margin-top: 20px;
+    }
+    .btn {
+        margin-top: 20px;
+    }
+    header {
+        justify-content: center;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #181818;
+    text-align: center;
+}
+.footer-container {
+    max-width: 600px;
+    margin: auto;
+}
+.footer-container p {
+    color: #b3b3b3;
+}
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.footer-social a {
+    color: white;
+    font-size: 1.8rem;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+.footer-social a.github {
+    background-color: #333;
+}
+.footer-social a.linkedin {
+    background-color: #0077b5;
+}
+.footer-social a.whatsapp {
+    background-color: #25D366;
+}
+.footer-social a.instagram {
+    background-color: #E1306C;
+}
+.footer-social a:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+}

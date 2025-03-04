@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Login</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        .container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #cf9fffda;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .toggle-link {
+            margin-top: 10px;
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .toggle-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="login-form">
+            <h2>Login</h2>
+            <form onsubmit="return validateLogin()">
+                <input type="text" id="username" placeholder="Username" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <button type="submit">Login</button>
+            </form>
+            <p class="toggle-link" onclick="toggleForm('signup')">Don't have an account? Sign Up</p>
+        </div>
+
+        <div id="signup-form" style="display: none;">
+            <h2>Sign Up</h2>
+            <form onsubmit="return validateSignUp()">
+                <input type="text" id="new-username" placeholder="Username" required><br>
+                <input type="email" id="new-email" placeholder="Email" required><br>
+                <input type="password" id="new-password" placeholder="Password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p class="toggle-link" onclick="toggleForm('login')">Already have an account? Login</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Fyumrist.</p>
+    </footer>
+
+    <script>
+        function toggleForm(formType) {
+            const loginForm = document.getElementById('login-form');
+            const signUpForm = document.getElementById('signup-form');
+
+            if (formType === 'signup') {
+                loginForm.style.display = 'none';
+                signUpForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                signUpForm.style.display = 'none';
+            }
+        }
+
+        function validateLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert("Login Berhasil");
+                window.location.href = 'home 2.html';
+                return false; 
+            } else {
+                alert("Wrong username or password!");
+                return false; 
+            }
+        }
+
+        function validateSignUp() {
+            const newUsername = document.getElementById('new-username').value.trim();
+            const newEmail = document.getElementById('new-email').value.trim();
+            const newPassword = document.getElementById('new-password').value.trim();
+
+            if (newUsername && newEmail && newPassword) {
+                localStorage.setItem('username', newUsername);
+                localStorage.setItem('email', newEmail);
+                localStorage.setItem('password', newPassword);
+
+                alert("Sign Up is successful, please Login.");
+                toggleForm('login');
+                return false; 
+            } else {
+                alert("Please fill in all data.");
+                return false; 
+            }
+        }
+    </script>
+</body>
+</html>
+

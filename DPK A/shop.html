@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Fyumrist</title>
+    <link rel="stylesheet" href="shop.css">
+    <style>
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        #cart {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        #payment {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+        }
+
+        #payment select {
+            padding: 10px;
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        #total {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #cf9fffda; padding: 10px; text-align: center;">
+        <a href="home.html" style="color: black; margin-right: 20px; text-decoration: none;">Fyumrist</a>
+        <a href="shop.html" style="color: black; margin-right: 20px;">Shop</a>
+        <a href="contac.html" style="color: black; margin-right: 20px;">Contact Us</a>
+        <a href="login.html" style="color: black; margin-right: 20px;">Login</a>
+    </header>
+
+    <main>
+        <h1 style="text-align: center; margin-top: 20px;">Our product</h1>
+        <div class="product-grid">
+            <!-- Produk 1 -->
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-19 at 10.45.29_fd9544f7.jpg" alt="Produk 1">
+                <h2>Pink Roses</h2>
+                <p>This pink rose bouquet features fresh roses combined with green leaves and small white flowers. Wrapped in cream and pastel paper, this bouquet is perfect for a birthday gift, celebration or declaration of love. Crafted with passion, precision, and a touch of elegance and romance. Elevate your timeless moments with your loved one with our exquisite beauty flower bouquet.</p>
+                <p>IDR 350.000</p>
+                <button onclick="addToCart('Pink roses', 350000)">Add to cart</button>
+            </div>
+
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-14 at 11.48.56_28a2b92f.jpg" alt="Produk 2">
+                <h2>White tulips</h2>
+                <p>This elegant bouquet of white tulips exudes simplicity and purity. Consisting of fresh white tulips packaged in soft green wrapping paper, this bouquet provides the perfect touch of elegance. Suitable as a special gift for various occasions, from celebrations, thanks, to signs of affection. Give this timeless beauty of white tulips to your loved ones for an unforgettable moment.</p>
+                <p>IDR 250.000</p>
+                <button onclick="addToCart('White tulips', 250000)">Add to cart</button>
+            </div>
+
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-14 at 11.50.28_ae2b73b4.jpg" alt="Produk 3">
+                <h2>Pastel tulips</h2>
+                <p>Enjoy the beauty of this pastel tulip bouquet that exudes tenderness and elegance. Consisting of fresh purple and white tulips in soft pastel shades, this bouquet is wrapped in gray and white paper which adds a modern touch. Ideal as a gift for various occasions, from birthdays, celebrations, to tokens of love. This bouquet will bring warmth and happiness to anyone who receives it.</p>
+                <p>IDR 300.000</p>
+                <button onclick="addToCart('Pastel tulips', 300000)">Add to cart</button>
+            </div>
+        </div>
+        <div id="cart">
+            <h3>Cart</h3>
+            <ul id="cart-items">
+            </ul>
+            <p id="total">Total: IDR0 </p>
+            <button class="btn" onclick="clearCart()">Cancel order</button>
+        </div>
+        <div id="payment">
+            <h3>Choose payment method:</h3>
+            <select id="payment-method">
+                <option value="transfer">Bank Transfer</option>
+                <option value="gopay">Gopay</option>
+                <option value="ovo">OVO</option>
+                <option value="shopepay">Shopeepay</option>
+            </select>
+            <button class="btn" onclick="processPayment()">Pay</button>
+        </div>
+    </main>
+
+    <footer style="background-color: #cf9fffda; padding: 10px; text-align: center;">
+        <p>&copy; Fyumrist.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        //untuk menambahkan produk ke keranjang
+        function addToCart(productName, price) {
+            cart.push({ productName, price });
+            updateCart();
+        }
+
+        // fungsinya untuk memperbarui tampilan keranjang
+        function updateCart() {
+            const cartItems = document.getElementById("cart-items");
+            cartItems.innerHTML = '';
+            total = 0;
+
+            // buat menampilkan produk di keranjang
+            cart.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${item.productName} - Rp${item.price.toLocaleString()}`;
+                cartItems.appendChild(listItem);
+                total += item.price;
+            });
+
+     //total pembelanjaan
+            document.getElementById("total").textContent = `Total: IDR${total.toLocaleString()}`;
+        }
+        function processPayment() {
+            const paymentMethod = document.getElementById("payment-method").value;
+            alert(`Payment with ${paymentMethod} successful. Payment total: IDR${total.toLocaleString()}`);
+            cart = [];
+            updateCart();
+        }
+        function clearCart() {
+            if (confirm("Are you sure you want to cancel the order?")) {
+                cart = [];
+                updateCart();
+            }
+        }
+    </script>
+</body>
+</html>

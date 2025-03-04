@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Fyumrist</title>
+    <link href="contac.css" rel="stylesheet">
+    <link rel="stylesheet" href="deka.js">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f6ff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #cf9fffda;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header a {
+            color: black;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: #6d28d9;
+        }
+
+        /* Main Section */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        main .title {
+            font-size: 2.2rem;
+            color: #6d28d9;
+            margin-bottom: 20px;
+        }
+
+        .contact-container {
+            display: inline-block;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .contact-container p {
+            font-size: 1rem;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-container a {
+            color: #6d28d9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+            transition: color 0.3s;
+        }
+
+        .contact-container a:hover {
+            color: #4c1d95;
+        }
+
+        .contact-container i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #cf9fffda;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="home.html">Fyumrist</a>
+        <a href="shop.html">Shop</a>
+        <a href="contac.html">Contact Us</a>
+        <a href="login.html">Login</a>
+    </header>
+
+    <main>
+        <h1 class="title">Contact Us</h1>
+        <div class="contact-container">
+            <p>
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                <strong>WhatsApp:</strong> 
+                <a id="whatsapp-link" href="https://wa.me/62882006809388" target="_blank">+62 882-0068-09388</a>
+            </p>
+            <p>
+                <i class="fas fa-envelope" style="color: #D44638;"></i>
+                <strong>Email:</strong> 
+                <a id="email-link" href="mailto:fyumrist@gmail.com">fyumrist@gmail.com</a>
+            </p>
+            <p>
+                <i class="fab fa-instagram" style="color: #C13584;"></i>
+                <strong>Instagram:</strong> 
+                <a id="instagram-link" href="https://www.instagram.com/fyumrist/" target="_blank">@fyumrist</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Fyumrist.</p>
+    </footer>

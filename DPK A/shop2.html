@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Fyumrist</title>
+    <link rel="stylesheet" href="shop.css">
+    <style>
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        #cart {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        #payment {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+        }
+
+        #payment .instructions {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+        #total {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #cf9fffda; padding: 10px; text-align: center;">
+        <a href="home 2.html" style="color: black; margin-right: 20px; text-decoration: none;">Fyumrist</a>
+        <a href="shop2.html" style="color: black; margin-right: 20px;">Shop</a>
+        <a href="contac2.html" style="color:black ; margin-right: 20px;" >contact us</a>
+    </header>
+    <main>
+        <h1 style="text-align: center; margin-top: 20px;">Our Product</h1>
+        <div class="product-grid">
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-19 at 10.45.29_fd9544f7.jpg" alt="Pink Roses">
+                <h2>Pink Roses</h2>
+                <p>This pink rose bouquet features fresh roses combined with green leaves and small white flowers.</p>
+                <p>IDR 350.000</p>
+                <button onclick="addToCart('Pink roses', 350000)">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-14 at 11.48.56_28a2b92f.jpg" alt="White Tulips">
+                <h2>White Tulips</h2>
+                <p>This elegant bouquet of white tulips exudes simplicity and purity.</p>
+                <p>IDR 250.000</p>
+                <button onclick="addToCart('White tulips', 250000)">Add to cart</button>
+            </div>
+            <div class="product">
+                <img src="WhatsApp Image 2024-11-14 at 11.50.28_ae2b73b4.jpg" alt="Pastel Tulips">
+                <h2>Pastel Tulips</h2>
+                <p>Enjoy the beauty of this pastel tulip bouquet that exudes tenderness and elegance.</p>
+                <p>IDR 300.000</p>
+                <button onclick="addToCart('Pastel tulips', 300000)">Add to cart</button>
+            </div>
+        </div>
+
+        <div id="cart">
+            <h3>Cart</h3>
+            <ul id="cart-items"></ul>
+            <p id="total">Total: IDR 0</p>
+            <button class="btn" onclick="clearCart()">Cancel Order</button>
+        </div>
+
+        <div id="payment">
+            <h3>Payment</h3>
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method">
+                <option value="shopepay">ShopeePay</option>
+                <option value="gopay">Gopay</option>
+                <option value="ovo">OVO</option>
+                <option value="dana">Dana</option>
+            </select>
+            <button class="btn" onclick="generatePaymentInstructions()">Proceed to Payment</button>
+            <div class="instructions">
+                <p id="payment-instructions"></p>
+                <button class="btn" onclick="confirmPayment()">Send</button>
+                <button class="btn" onclick="clearCart()">Cancel</button>
+            </div>
+        </div>
+        <div id="custom-order">
+            <h3>Custom Flower Order</h3>
+            <form id="custom-form">
+                <label for="custom-type">Flower Type:</label>
+                <input type="text" id="custom-type" placeholder="e.g., Roses, Tulips" required>
+        
+                <label for="custom-quantity">Quantity:</label>
+                <input type="number" id="custom-quantity" placeholder="Enter quantity" min="1" required>
+        
+                <label for="custom-message">Custom Message:</label>
+                <textarea id="custom-message" rows="4" placeholder="Write a special message"></textarea>
+        
+                <button class="btn" type="button" onclick="submitCustomOrder()">Add Custom Order</button>
+            </form>
+        </div>
+        
+    </main>
+
+    <footer style="background-color: #cf9fffda; padding: 10px; text-align: center;">
+        <p>&copy; Fyumrist</p>
+    </footer>
+
+    <script>
+        let cart = []; 
+
+        function addToCart(name, price) {
+            // Add item to cart array
+            cart.push({name: name, price: price});
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsList = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            cartItemsList.innerHTML = ''; 
+
+            let total = 0;
+            let index = 0;
+
+            while (index < cart.length) {
+                const item = cart[index];
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - IDR ${item.price}`;
+                cartItemsList.appendChild(listItem);
+                total += item.price;
+                index++;
+            }
+
+            totalElement.textContent = `Total: IDR ${total}`;
+        }
+
+        function clearCart() {
+            cart = []; 
+            updateCart();
+        }
+
+        function generatePaymentInstructions() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const paymentInstructions = document.getElementById('payment-instructions');
+            const instructionsDiv = document.querySelector('#payment .instructions');
+            
+            const paymentNumber = "027393639263936";
+            let instructions = `Please proceed with the payment using ${paymentMethod}. Transfer to the following number: ${paymentNumber}.`;
+
+            paymentInstructions.textContent = instructions;
+            instructionsDiv.style.display = 'block';
+        }
+
+        function confirmPayment() {
+            alert('Payment confirmed! Thank you for your purchase.');
+            clearCart();
+        }
+
+        function submitCustomOrder() {
+            const type = document.getElementById('custom-type').value;
+            const quantity = document.getElementById('custom-quantity').value;
+            const message = document.getElementById('custom-message').value;
+
+            if (type && quantity && message) {
+                const pricePerUnit = 350000; 
+                const price = quantity * pricePerUnit;
+                const customOrder = `${quantity} of ${type} with message: ${message} - IDR ${price}`;
+                cart.push({name: customOrder, price: price});
+                updateCart();
+            } else {
+                alert('Please fill in all the details.');
+            }
+        }
+        
+    </script>
+    
+    <script src="shop.js"></script>
+
+</body>
+</html>
